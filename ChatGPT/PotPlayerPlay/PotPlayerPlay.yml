@@ -1,0 +1,37 @@
+name: PotPlayer Play
+description: Add a scene-detail button that opens the scene's original file in PotPlayer.
+version: "1.0.0"
+ui:
+  javascript:
+    - PotPlayerPlay.js
+exec:
+  - 'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe'
+  - -NoProfile
+  - -NonInteractive
+  - -Command
+  - >-
+    & {
+      $ErrorActionPreference = 'Stop'
+      [Console]::InputEncoding = New-Object System.Text.UTF8Encoding($false)
+      try {
+        $inputJson = [Console]::In.ReadToEnd()
+        if ([string]::IsNullOrWhiteSpace($inputJson)) { throw 'No plugin input was supplied' }
+        $request = $inputJson | ConvertFrom-Json
+        $videoPath = [string]$request.args.path
+        $potPlayerPath = 'C:\Program Files (x86)\DAUM\PotPlayer\PotPlayer.exe'
+        if ([string]::IsNullOrWhiteSpace($videoPath)) { throw 'No original video path was supplied' }
+        if (-not (Test-Path -LiteralPath $potPlayerPath -PathType Leaf)) { throw 'PotPlayer was not found at the configured path' }
+        if (-not (Test-Path -LiteralPath $videoPath -PathType Leaf)) { throw 'The original video file no longer exists at the supplied path' }
+        $quotedVideoPath = '"' + $videoPath + '"'
+        Start-Process -FilePath $potPlayerPath -ArgumentList $quotedVideoPath | Out-Null
+      } catch {
+        [Console]::Error.WriteLine($_.Exception.Message)
+        exit 1
+      }
+    }
+interface: raw
+tasks:
+  - name: Play in PotPlayer
+    description: Open the selected scene's original file in PotPlayer
+    defaultArgs:
+      path: null

@@ -1,0 +1,6 @@
+name: Ultimate Queue And Preview
+description: Automatically enables Continue in scene queue and falls back to stream when preview is missing
+version: "1.0.1"
+ui:
+  javascript:
+    - UltimateQueueAndPreview.js

@@ -1,0 +1,10 @@
+id: PotPlayerPlay
+name: PotPlayer Play
+metadata:
+  description: Add a scene-detail button that opens the original video file in PotPlayer
+version: 1.0.0-20260913
+requires: []
+source_repository: local
+files:
+- PotPlayerPlay.js
+- PotPlayerPlay.yml
