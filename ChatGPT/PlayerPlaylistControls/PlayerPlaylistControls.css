@@ -1,0 +1,84 @@
+.video-js .vjs-control-bar .spc-button {
+  width: auto;
+  min-width: 5.5em;
+  flex: 0 0 auto;
+  padding: 0 0.6em;
+  font-family: inherit;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.video-js .spc-button[aria-pressed="true"] {
+  color: #74edac;
+  background-color: rgba(25, 135, 84, 0.25);
+}
+
+.video-js .spc-button:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: -3px;
+}
+
+.video-js .spc-button:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+
+.video-js .spc-status {
+  position: absolute;
+  bottom: 4.5em;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 90%;
+  padding: 0.7em 1em;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.85);
+  color: #fff;
+  font-family: sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: center;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.video-js .spc-status.spc-error {
+  color: #ffb3b3;
+}
+
+.video-js .spc-status[hidden] {
+  display: none;
+}
+
+.scene-file-info .spc-file-path {
+  color: #70b9ff;
+  cursor: pointer;
+}
+
+.scene-file-info .spc-file-path:hover {
+  text-decoration: underline;
+}
+
+.scene-file-info .spc-file-path:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.scene-file-info .spc-file-path[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: wait;
+}
+
+@media (max-width: 600px) {
+  .video-js .vjs-control-bar {
+    flex-wrap: wrap;
+    height: auto;
+    min-height: 3em;
+  }
+
+  .video-js .vjs-control-bar .spc-button {
+    height: 2.5em;
+    min-width: 5em;
+    padding: 0 0.35em;
+    font-size: 11px;
+  }
+}
